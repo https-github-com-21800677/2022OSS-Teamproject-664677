@@ -1,5 +1,4 @@
-# 2022OSS-Teamproject-664677
-2022 1학기 OSS 팀프로젝트 repo입니다
+# Cafe 디저트 자판기
 
 ## mini project 주제
 저희는 이번 주제를 CAFE 디저트 자판기로 선정하였습니다.   
