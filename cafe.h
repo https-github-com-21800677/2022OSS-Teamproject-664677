@@ -1,8 +1,8 @@
 typedef struct{
     char name[100];
     char expl[100];
-    char type;
-    char taste;
+    char type[100];
+    char taste[100];
     int price;
 }Cafe;
 
