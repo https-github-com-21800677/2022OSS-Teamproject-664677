@@ -30,12 +30,42 @@ int createProduct(Cafe *c){
 void readProduct(Cafe c){
     printf("%s\t%s\t%s\t%s\t%d", c.name, c.expl, c.type, c.taste, c.price);
 } //상품 하나를 출력하는 함수 - 정승민
-int updateProduct(Cafe *c); //상품을 수정하는 함수 - 정승민
+int updateProduct(Cafe *c[], int count){
+    int index;
+    listProduct(c,count);
+    printf("\n 번호는 (취소 :0)?");
+    scanf("%d",&index);
+    if(index == 0) {
+        return 1;
+    }
+    else{
+        printf("상품의 이름은? ");
+        getchar();
+        scanf("%[^\n]s",c[index-1]->name);
+        getchar();
+        printf("상품의 설명은? ");
+        scanf("%[^\n]s",c[index-1]->expl);
+        getchar();
+        printf("상품의 종류는? ");
+        scanf("%[^\n]s",c[index-1]->type);
+        getchar();
+        printf("상품의 맛은? ");
+        getchar();
+        scanf("%[^\n]s",c[index-1]->taste);
+        printf("상품의 가격은?");
+        getchar();
+        scanf("%d",&c[index-1]->price);
+        printf("=> 수정됨!\n");
+        return 1;
+    }
+} //상품을 수정하는 함수 - 정승민
 void deleteProduct(Cafe *c[], int count); //상품 삭제하는 함수 - 정승민
-void listProduct(Cafe *c[],int count){printf("이름\t설명\t종류\t맛\t가격\n");
+void listProduct(Cafe *c[],int count){
+    printf("번호\t이름\t설명\t종류\t맛\t가격\n");
     printf("======================================\n");
     for(int i=0;i<count;i++){
+        printf("%d",i+1);
         readProduct(*c[i]);
     }
-        printf("\n");
-        } //모든 상품을 출력하는 함수 - 정승민
+    printf("\n");
+} //모든 상품을 출력하는 함수 - 정승민
