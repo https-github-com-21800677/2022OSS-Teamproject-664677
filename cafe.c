@@ -27,7 +27,15 @@ int createProduct(Cafe *c){
     scanf("%d",&c->price);
     return 1;
 } //새로운 상품을 추가하는 함수 - 정승민
-void readProduct(Cafe c); //상품 하나를 출력하는 함수 - 정승민
+void readProduct(Cafe c){
+    printf("%s\t%s\t%s\t%s\t%d", c.name, c.expl, c.type, c.taste, c.price);
+} //상품 하나를 출력하는 함수 - 정승민
 int updateProduct(Cafe *c); //상품을 수정하는 함수 - 정승민
 void deleteProduct(Cafe *c[], int count); //상품 삭제하는 함수 - 정승민
-void listProduct(Cafe *c[],int count); //모든 상품을 출력하는 함수 - 정승민
+void listProduct(Cafe *c[],int count){printf("이름\t설명\t종류\t맛\t가격\n");
+    printf("======================================\n");
+    for(int i=0;i<count;i++){
+        readProduct(*c[i]);
+    }
+        printf("\n");
+        } //모든 상품을 출력하는 함수 - 정승민
