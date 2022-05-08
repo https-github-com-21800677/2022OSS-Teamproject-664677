@@ -59,11 +59,27 @@ int updateProduct(Cafe *c[], int count){
         return 1;
     }
 } //상품을 수정하는 함수 - 정승민
-void deleteProduct(Cafe *c[], int count); //상품 삭제하는 함수 - 정승민
+void deleteProduct(Cafe *c[], int count){
+    int confirm, index;
+    listProduct(c,count);
+    printf("번호는? (취소:0)");
+    scanf("%d",&index);
+    if(index == 0) ;
+    else {
+        printf("정말 삭제하시겠습니까?(삭제:1)");
+        scanf("%d",&confirm);
+        if(confirm == 1) {
+            free(c[index-1]);
+            c[index-1] = NULL;
+            printf("삭제됨!");
+        }
+    }
+} //상품 삭제하는 함수 - 정승민
 void listProduct(Cafe *c[],int count){
     printf("번호\t이름\t설명\t종류\t맛\t가격\n");
     printf("======================================\n");
     for(int i=0;i<count;i++){
+        if(c[i]==NULL) continue;
         printf("%d",i+1);
         readProduct(*c[i]);
     }
