@@ -65,10 +65,9 @@ int updateProduct(Cafe *c[], int count){
         scanf("%[^\n]s",c[index-1]->type);
         getchar();
         printf("상품의 맛은? ");
-        getchar();
         scanf("%[^\n]s",c[index-1]->taste);
-        printf("상품의 가격은?");
         getchar();
+        printf("상품의 가격은?");
         scanf("%d",&c[index-1]->price);
         printf("=> 수정됨!\n");
         return 1;
