@@ -25,8 +25,8 @@ int selectMenu(){
     return menu;
 } //메뉴선택 - 정승민
 int createProduct(Cafe *c){
-    printf("상품의 이름은? ");
     getchar();
+    printf("상품의 이름은? ");
     scanf("%[^\n]s",c->name);
     getchar();
     printf("상품의 설명은? ");
@@ -36,10 +36,9 @@ int createProduct(Cafe *c){
     scanf("%[^\n]s",c->type);
     getchar();
     printf("상품의 맛은? ");
-    getchar();
     scanf("%[^\n]s",c->taste);
-    printf("상품의 가격은?");
     getchar();
+    printf("상품의 가격은?");
     scanf("%d",&c->price);
     return 1;
 } //새로운 상품을 추가하는 함수 - 정승민
@@ -66,10 +65,9 @@ int updateProduct(Cafe *c[], int count){
         scanf("%[^\n]s",c[index-1]->type);
         getchar();
         printf("상품의 맛은? ");
-        getchar();
         scanf("%[^\n]s",c[index-1]->taste);
-        printf("상품의 가격은?");
         getchar();
+        printf("상품의 가격은?");
         scanf("%d",&c[index-1]->price);
         printf("=> 수정됨!\n");
         return 1;
@@ -96,7 +94,7 @@ void listProduct(Cafe *c[],int count){
     printf("======================================\n");
     for(int i=0;i<count;i++){
         if(c[i]==NULL) continue;
-        printf("%d",i+1);
+        printf("%d\t",i+1);
         readProduct(*c[i]);
     }
     printf("\n");
