@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "cafe.h"
 
 int loadFile(Cafe *c[]); //파일 불러오기 - 정승민
