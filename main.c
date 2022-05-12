@@ -22,13 +22,13 @@ int main(void){
         }else if(menu == 4){   
             deleteProduct(clist, count);
         }else if(menu == 5){
-
+             searchName(clist,count);
         }else if(menu == 6){
 
         }else if(menu == 7){
 
         }else if(menu == 8){
-
+             searchTaste(clist,count);
         }else if(menu == 9){
 
         }
