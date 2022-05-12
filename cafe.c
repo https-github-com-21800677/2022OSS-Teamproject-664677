@@ -4,9 +4,37 @@
 
 int loadFile(Cafe *c[]); //파일 불러오기 - 정승민
 void saveFile(Cafe *c[],int count); //파일 저장 - 정승민
-void searchName(Cafe *c[],int count);  //이름 검색 - 정지우
+void searchName(Cafe *c[],int count){
+    char name[100];
+    int index = 0;
+    printf("검색할 디저트 이름은?");
+    getchar();
+    scanf("%[^\n]s",name);
+    getchaar();
+    printf("이름\t설명\t종류\t맛\t가격\n");
+    printf("============================");
+    for(int i = 0; i<ount; i++, index++){
+        char *ptr = {NULL};
+        ptr = strstr(c[i]->name,name);
+        if(ptr!= NULL) readProduct(*c[index]);
+    }
+}  //이름 검색 - 정지우
 void searchPrice(Cafe *c[],int count); //가격 검색 - 정지우
-void searchTaste(Cafe *c[],int count); //맛 검색 - 정지우
+void searchTaste(Cafe *c[],int count){
+    char taste[100];
+    int index = 0;
+    printf("검색할 디저트 이름은?");
+    getchar();
+    scanf("%[^\n]s",taste);
+    getchaar();
+    printf("이름\t설명\t종류\t맛\t가격\n");
+    printf("============================");
+    for(int i = 0; i<ount; i++, index++){
+        char *ptr = {NULL};
+        ptr = strstr(c[i]->taste,taste);
+        if(ptr!= NULL) readProduct(*c[index]);
+    }
+}  //맛 검색 - 정지우
 void searchType(Cafe *c[],int count); //종류 검색 - 정지우
 int selectMenu(){
     int menu;
@@ -15,9 +43,9 @@ int selectMenu(){
     printf("3. 수정\n");
     printf("4. 삭제\n");
     printf("5. 파일저장(구현되지 않음)\n");
-    printf("6. 이름검색(구현되지 않음)\n");
+    printf("6. 이름검색\n");
     printf("7. 설명검색(구현되지 않음)\n");
-    printf("8. 종류검색(구현되지 않음)\n");
+    printf("8. 맛 검색\n");
     printf("9. 가격검색(구현되지 않음)\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
