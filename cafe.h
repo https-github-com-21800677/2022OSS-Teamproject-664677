@@ -5,7 +5,10 @@ typedef struct{
     char taste[100];
     int price;
 }Cafe;
-
+typedef struct{
+    int price;
+    int num;
+}Order;
 int loadFile(Cafe *c[]); //파일 불러오기 - 정승민
 void saveFile(Cafe *c[],int count); //파일 저장 - 정승민
 void searchName(Cafe *c[],int count);  //이름 검색 - 정지우
