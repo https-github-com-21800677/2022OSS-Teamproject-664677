@@ -36,6 +36,11 @@ void searchTaste(Cafe *c[],int count){
     }
 }  //맛 검색 - 정지우
 void searchType(Cafe *c[],int count); //종류 검색 - 정지우
+void addOrder();
+void updateOrder();
+void deleteOrder();
+void listOrder();
+void readOrder();
 int selectMenu(){
     int menu;
     printf("1. 조회\n");
@@ -46,7 +51,8 @@ int selectMenu(){
     printf("6. 이름검색\n");
     printf("7. 설명검색(구현되지 않음)\n");
     printf("8. 맛 검색\n");
-    printf("9. 가격검색(구현되지 않음)\n");
+    printf("9. 주문추가(구현되지 않음)\n");
+    printf("10. 주문수정(구현되지 않음)\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
