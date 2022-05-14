@@ -21,3 +21,8 @@ void readProduct(Cafe c); //상품 하나를 출력하는 함수 - 정승민
 int updateProduct(Cafe *c[], int count); //상품을 수정하는 함수 - 정승민
 void deleteProduct(Cafe *c[], int count); //상품 삭제하는 함수 - 정승민
 void listProduct(Cafe *c[],int count); //모든 상품을 출력하는 함수 - 정승민
+void addOrder();
+void updateOrder();
+void deleteOrder();
+void listOrder();
+void readOrder();
