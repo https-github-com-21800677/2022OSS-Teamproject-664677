@@ -7,8 +7,8 @@ int main(void){
     int menu;
     //int count = loadFile(clist);
     int count = 0;
-
- 
+    Order *olist[20]={0};
+    
     while (1){
         menu = selectMenu();
         if(menu == 0)break;
@@ -26,11 +26,14 @@ int main(void){
         }else if(menu == 6){
 
         }else if(menu == 7){
-
+            searchTaste(clist,count);
         }else if(menu == 8){
-             searchTaste(clist,count);
+             listOrder(clist,olist,count);
         }else if(menu == 9){
-
+            olist[count] = (Order*)malloc(sizeof(Order));
+            addOrder(clist, olist, count);
+        }else if(menu == 10){
+            updateOrder(clist, olist, count);
         }
     }
     printf("종료됨!\n");
