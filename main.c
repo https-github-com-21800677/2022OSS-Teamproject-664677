@@ -5,9 +5,8 @@
 int main(void){
     Cafe *clist[20];
     int menu;
-    //int count = loadFile(clist);
-    int count = 0;
-    
+    int count = loadFile(clist);
+       
     
     while (1){
         menu = selectMenu();
@@ -22,13 +21,13 @@ int main(void){
         }else if(menu == 4){   
             deleteProduct(clist, count);
         }else if(menu == 5){
-             
+            saveFile(clist,count);
         }else if(menu == 6){
             searchName(clist,count);
         }else if(menu == 7){
             searchTaste(clist,count);
         }else if(menu == 8){
-             listOrder(clist,count);
+            listOrder(clist,count);
         }else if(menu == 9){
             addOrder(clist, count);
         }else if(menu == 10){

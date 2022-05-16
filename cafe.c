@@ -3,8 +3,39 @@
 #include <string.h>
 #include "cafe.h"
 
-int loadFile(Cafe *c[]); //파일 불러오기 - 정승민
-void saveFile(Cafe *c[],int count); //파일 저장 - 정승민
+int loadFile(Cafe *c[]){
+    int count = 0;
+    FILE *fp;
+    fp = fopen("cafe.txt","r"); //파일 오픈
+    if (fp == NULL){ //파일이 없으면 종료
+        printf("=>파일없음\n");
+        return 0;
+    }
+    for(int i=0;i<20;i++,count++){
+        c[i] = (Cafe *)malloc(sizeof(Cafe));
+        if(feof(fp)) break;
+        fscanf(fp,"\n%[^\n]",c[i]->name);
+        fscanf(fp,"\n%[^\n]",c[i]->expl);
+        fscanf(fp,"\n%[^\n]",c[i]->type);
+        fscanf(fp,"\n%[^\n]",c[i]->taste);
+        fscanf(fp,"%d",&c[i]->price);
+        fscanf(fp,"%d",&c[i]->ordernum);
+        fscanf(fp,"%d",&c[i]->orderprice);
+    }
+    fclose(fp);
+    printf("로딩 완료!\n");
+    return count;
+} //파일 불러오기 - 정승민
+void saveFile(Cafe *c[],int count){
+    FILE *fp;
+    fp = fopen("cafe.txt","wt");
+    for(int i=0;i<count;i++){
+        if (c[i] == NULL) continue;
+        fprintf(fp,"%s\n%s\n%s\n%s\n%d\n%d\n%d",c[i]->name, c[i]->expl, c[i]->type, c[i]->taste, c[i]->price, c[i]->ordernum, c[i]->orderprice);
+    }
+    fclose(fp);
+    printf("저장 성공!");
+} //파일 저장 - 정승민
 void searchName(Cafe *c[],int count){
     char name[100];
     int index = 0;
@@ -91,7 +122,7 @@ int selectMenu(){
     printf("2. 추가\n");
     printf("3. 수정\n");
     printf("4. 삭제\n");
-    printf("5. 파일저장(구현되지 않음)\n");
+    printf("5. 파일저장\n");
     printf("6. 이름검색\n");
     printf("7. 맛 검색\n");
     printf("8, 주문 조회\n");
@@ -100,6 +131,7 @@ int selectMenu(){
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
+    printf("\n");
     return menu;
 } //메뉴선택 - 정승민
 int createProduct(Cafe *c){
