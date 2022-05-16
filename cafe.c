@@ -118,6 +118,8 @@ int createProduct(Cafe *c){
     getchar();
     printf("상품의 가격은? ");
     scanf("%d",&c->price);
+    c->ordernum = 0;
+    c->orderprice = 0;
     return 1;
 } //새로운 상품을 추가하는 함수 - 정승민
 void readProduct(Cafe c){
