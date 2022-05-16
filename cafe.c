@@ -13,23 +13,22 @@ void searchName(Cafe *c[],int count){
     scanf("%[^\n]s",name);
     getchar();
     printf("이름\t설명\t종류\t맛\t가격\n");
-    printf("============================");
+    printf("============================\n");
     for(int i = 0; i<count; i++, index++){
         char *ptr = {NULL};
         ptr = strstr(c[i]->name,name);
         if(ptr!= NULL) readProduct(*c[index]);
     }
 }  //이름 검색 - 정지우
-void searchPrice(Cafe *c[],int count); //가격 검색 - 정지우
 void searchTaste(Cafe *c[],int count){
     char taste[100];
     int index = 0;
-    printf("검색할 디저트 이름은?");
+    printf("검색할 디저트의 맛은?");
     getchar();
     scanf("%[^\n]s",taste);
     getchar();
     printf("이름\t설명\t종류\t맛\t가격\n");
-    printf("============================");
+    printf("============================\n");
     for(int i = 0; i<count; i++, index++){
         char *ptr = {NULL};
         ptr = strstr(c[i]->taste,taste);
@@ -37,7 +36,7 @@ void searchTaste(Cafe *c[],int count){
     }
 }  //맛 검색 - 정지우
 
-void addOrder(Cafe *c[], Order *o[], int count){
+void addOrder(Cafe *c[],  int count){
     int index;
     listProduct(c,count);
     int numb;
@@ -50,41 +49,41 @@ void addOrder(Cafe *c[], Order *o[], int count){
         printf("주문할 갯수는? ");
         scanf("%d",&numb);
         
-        o[index-1]->num +=  numb;
+        c[index-1]->ordernum +=  numb;
         return;
     }
 }//주문 추가 - 정지우
-void updateOrder(Cafe * c[], Order *o[], int count){
+void updateOrder(Cafe * c[], int count){
     int index;
     listProduct(c,count);
-    listOrder(c,o,count);
+    listOrder(c,count);
     printf("\n 수정할 상품 번호는 (취소 :0)?");
     scanf("%d",&index);
     if(index == 0) {
         return;
     }
     else{
-        printf("주문할 갯수는? ");
-        scanf(" %d", &o[index-1]->num);
+        printf("수정할 갯수는? ");
+        scanf(" %d", &c[index-1]->ordernum);
         return;
     }
 }//주문 수정 - 정지우
-void listOrder(Cafe * c[], Order *o[], int count){
-    printf("상품명\t 수량\t 가격\t\n");
+void listOrder(Cafe * c[], int count){
+    printf("번호\t상품명\t 수량\t 가격\t\n");
     printf("======================\n");
     int total = 0;
     for(int i=0;i<count;i++){
         if(c[i]==NULL) continue;
-
+        c[i]->orderprice = c[i]->price*c[i]->ordernum;
         printf("%d\t",i+1);
-        readOrder(*c[i], *o[i]);
-        total += o[i]->num*c[i]->price;
+        readOrder(*c[i]);
+        total +=c[i]->orderprice;
     }
     printf("\n");
     printf("총 가격은 %d원입니다\n", total);
 }//모든 주문 출력 - 정지우
-void readOrder(Cafe c, Order o){
-    printf("%s\t %d\t %d\n", c.name, o.num, o.num * c.price);
+void readOrder(Cafe c){
+    printf("%s\t %d\t %d\n", c.name, c.ordernum, c.orderprice);
 }//1개의 주문 출력, 정지우
 int selectMenu(){
     int menu;
@@ -119,6 +118,8 @@ int createProduct(Cafe *c){
     getchar();
     printf("상품의 가격은? ");
     scanf("%d",&c->price);
+    c->ordernum = 0;
+    c->orderprice = 0;
     return 1;
 } //새로운 상품을 추가하는 함수 - 정승민
 void readProduct(Cafe c){
