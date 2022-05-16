@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "cafe.h"
 
 int loadFile(Cafe *c[]); //파일 불러오기 - 정승민
@@ -10,10 +11,10 @@ void searchName(Cafe *c[],int count){
     printf("검색할 디저트 이름은?");
     getchar();
     scanf("%[^\n]s",name);
-    getchaar();
+    getchar();
     printf("이름\t설명\t종류\t맛\t가격\n");
     printf("============================");
-    for(int i = 0; i<ount; i++, index++){
+    for(int i = 0; i<count; i++, index++){
         char *ptr = {NULL};
         ptr = strstr(c[i]->name,name);
         if(ptr!= NULL) readProduct(*c[index]);
@@ -26,21 +27,65 @@ void searchTaste(Cafe *c[],int count){
     printf("검색할 디저트 이름은?");
     getchar();
     scanf("%[^\n]s",taste);
-    getchaar();
+    getchar();
     printf("이름\t설명\t종류\t맛\t가격\n");
     printf("============================");
-    for(int i = 0; i<ount; i++, index++){
+    for(int i = 0; i<count; i++, index++){
         char *ptr = {NULL};
         ptr = strstr(c[i]->taste,taste);
         if(ptr!= NULL) readProduct(*c[index]);
     }
 }  //맛 검색 - 정지우
-void searchType(Cafe *c[],int count); //종류 검색 - 정지우
-void addOrder();
-void updateOrder();
-void deleteOrder();
-void listOrder();
-void readOrder();
+
+void addOrder(Cafe *c[], Order *o[], int count){
+    int index;
+    listProduct(c,count);
+    int numb;
+    printf("\n 주문할 상품 번호는 (취소 :0)?");
+    scanf("%d",&index);
+    if(index == 0) {
+        return;
+    }
+    else{
+        printf("주문할 갯수는? ");
+        scanf("%d",&numb);
+        
+        o[index-1]->num +=  numb;
+        return;
+    }
+}//주문 추가 - 정지우
+void updateOrder(Cafe * c[], Order *o[], int count){
+    int index;
+    listProduct(c,count);
+    listOrder(c,o,count);
+    printf("\n 수정할 상품 번호는 (취소 :0)?");
+    scanf("%d",&index);
+    if(index == 0) {
+        return;
+    }
+    else{
+        printf("주문할 갯수는? ");
+        scanf(" %d", &o[index-1]->num);
+        return;
+    }
+}//주문 수정 - 정지우
+void listOrder(Cafe * c[], Order *o[], int count){
+    printf("상품명\t 수량\t 가격\t\n");
+    printf("======================\n");
+    int total = 0;
+    for(int i=0;i<count;i++){
+        if(c[i]==NULL) continue;
+
+        printf("%d\t",i+1);
+        readOrder(*c[i], *o[i]);
+        total += o[i]->num*c[i]->price;
+    }
+    printf("\n");
+    printf("총 가격은 %d원입니다\n", total);
+}//모든 주문 출력 - 정지우
+void readOrder(Cafe c, Order o){
+    printf("%s\t %d\t %d\n", c.name, o.num, o.num * c.price);
+}//1개의 주문 출력, 정지우
 int selectMenu(){
     int menu;
     printf("1. 조회\n");
@@ -49,10 +94,10 @@ int selectMenu(){
     printf("4. 삭제\n");
     printf("5. 파일저장(구현되지 않음)\n");
     printf("6. 이름검색\n");
-    printf("7. 설명검색(구현되지 않음)\n");
-    printf("8. 맛 검색\n");
-    printf("9. 주문추가(구현되지 않음)\n");
-    printf("10. 주문수정(구현되지 않음)\n");
+    printf("7. 맛 검색\n");
+    printf("8, 주문 조회\n");
+    printf("9. 주문추가\n");
+    printf("10. 주문수정\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
@@ -72,12 +117,12 @@ int createProduct(Cafe *c){
     printf("상품의 맛은? ");
     scanf("%[^\n]s",c->taste);
     getchar();
-    printf("상품의 가격은?");
+    printf("상품의 가격은? ");
     scanf("%d",&c->price);
     return 1;
 } //새로운 상품을 추가하는 함수 - 정승민
 void readProduct(Cafe c){
-    printf("%s\t%s\t%s\t%s\t%d", c.name, c.expl, c.type, c.taste, c.price);
+    printf("%s\t%s\t%s\t%s\t%d\n", c.name, c.expl, c.type, c.taste, c.price);
 } //상품 하나를 출력하는 함수 - 정승민
 int updateProduct(Cafe *c[], int count){
     int index;
@@ -101,7 +146,7 @@ int updateProduct(Cafe *c[], int count){
         printf("상품의 맛은? ");
         scanf("%[^\n]s",c[index-1]->taste);
         getchar();
-        printf("상품의 가격은?");
+        printf("상품의 가격은? ");
         scanf("%d",&c[index-1]->price);
         printf("=> 수정됨!\n");
         return 1;
@@ -132,4 +177,5 @@ void listProduct(Cafe *c[],int count){
         readProduct(*c[i]);
     }
     printf("\n");
-} //모든 상품을 출력하는 함수 - 정승민
+} 
+//모든 상품을 출력하는 함수 - 정승민
